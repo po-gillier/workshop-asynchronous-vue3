@@ -288,7 +288,7 @@ getPrice(maListProduit[3]).then((result) => prix3 = result)
 Encore une erreur ! On peut voir ici que nous allons mettre de la donnée dans maListDeProduit seulement lorsque la promesse sera résolue. Le fonctionnement singlethreaded de Javascript va continuer après la création de la promesse.
 Il va donc appeler `getPrix()` avec comme paramètre `maListProduit[0]`. \
 Pourtant `maListProduit` n'a toujours pas de donnée à l'index 0 puisque nous sommes juste apres la création de la promesse de `getListProduitAsync()`. \
-Il va donc falloir attendre que `getListProduitAsync()` soit terminé ainsi que la callback passé en param.
+Il va donc falloir attendre que `getListProduitAsync()` soit terminée ainsi que la callback passée en param.
 
 ### Comme par hasard?
 
@@ -377,10 +377,10 @@ let maListDeProduit = getListProduitAsync()
 Les avantages de Promise.all :
  - Les requetes sont lancées en parallèle
  - Toutes les requetes sans exception doivent être résolues avant de passer dans `.then()`
- - Ca évite d'avoir à créer des boiler plate de .then pour chaque promesse
+ - Ca évite d'avoir à créer des boilerplates de .then pour chaque promesse
  - Si une des promesses fail alors `Promise.all()` fail aussi
 
- Si l'on souhaite un comportement ou même si une des promesses fail les autres renvoient leur résultat et les rends disponibles il faut regarder du côté de `Promise.settle()` 
+ Si l'on souhaite un comportement où même si une des promesses fail les autres renvoient leur résultat et les rends disponibles il faut regarder du côté de `Promise.settle()` 
 ## Bonus Async/Await
 
 Il existe une autre façon de traiter l'asynchronisme, on peut utiliser les mots `async` et `await`. \
