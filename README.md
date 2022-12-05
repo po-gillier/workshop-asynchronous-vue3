@@ -428,9 +428,9 @@ Si les concepts d'asynchronisme, de Promise et de .then sont compris il reste qu
 
 ```
 let prixCourant: number = -1
-const p1 = getPrice(23).then(prix => prixCourant = prix) //getPrice retourne 1
+getPrice(23).then(prix => prixCourant = prix) //getPrice retourne 1
 
-const p2 = getPrice(50).then(prix => prixCourant = prix) //getPrice retourne 100000
+getPrice(50).then(prix => prixCourant = prix) //getPrice retourne 100000
 .then(faire_un_virement_sur_le_compte_en_banque_de_PO(prixCourant))
 
 ```
