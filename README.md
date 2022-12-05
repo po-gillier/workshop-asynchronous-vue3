@@ -110,10 +110,44 @@ La méthode then ne sera appelée que lorsque l'état de la promesse passe de pe
 ### Qu'est ce que ca implique? 
 On va pouvoir fournir à la méthode then une callback qui s'exectuera seulement lorsque la promesse sera résolue et que les données renvoyées par le back seront disponibles.
 
+### Exemple
+```
+function isEven(num) {
+  return new Promise((resolve, reject) => {
+    if (num % 2 === 0) {
+      resolve(true);
+    } else {
+      reject(false);
+    }
+  });
+}
+```
+Cette fonction permet de déterminer si un param est pair ou impair
+
+```
+isEven(2)
+  .then((result) => {
+    console.log(result); // affiche "VRAI"
+  })
+  .catch((result) => {
+    console.log(result); // ne s'exécute pas
+  });
+
+isEven(3)
+  .then((result) => {
+    console.log(result); // ne s'exécute pas
+  })
+  .catch((result) => {
+    console.log(result); // affiche "FAUX"
+  });
+```
+Nous avons ici un exemple qui montre l'utilisation de `.then()` pour attendre la résolution de la promesse avant traitement
+
+### Usecases
+
 Si l'on revient sur notre cas de Produit.
 Si l'on crée une promesse lorsque l'on crée notre requete afin d'avoir les informations produit, on va pouvoir fournir une callback traitant la donnée seulement lorsque le back répondra. Une fois la promesse crée, notre script continuera de tourner et donc l'utilisateur pourra ouvrir sa modale en cliquant sur son bouton, le site continuera de vivre et une fois que la donnée reviendra du back, notre callback va pouvoir la traiter et remplir les champs du site qui vont bien.
 
-### Usecases
 Avec notre exemple le use case donne : 
 
 - Affichage du site
@@ -485,7 +519,7 @@ Seulement dans ce cas les requetes ne seront pas parallèlisées et donc il y a 
 
 Ce que nous souhaitons c'est envoyer les requetes en même temps mais pouvoir prévoir l'ordre des consoles logs.
 
-Si ca vosu rappelle quelque chose c'est normal puisqu'il faut utiliser `Promise.all()` ou `Promise.settle()`
+Si ca vous rappelle quelque chose c'est normal puisqu'il faut utiliser `Promise.all()` ou `Promise.settle()`
 
 ```
     const responses = await Promise.all(users.map(user => fetchData(user)));
