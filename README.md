@@ -464,10 +464,10 @@ Si l'on souhaite les garder :
 
 ```
 let prixCourant: number = -1
-const p1 = await getPrice(23) //getPrice retourne 1
+prixCourant = await getPrice(23) //getPrice retourne 1
 faire_un_virement_sur_le_compte_en_banque_de_PO(prixCourant)
 
-const p2 = await getPrice(50) //getPrice retourne 100000
+prixCourant = await getPrice(50) //getPrice retourne 100000
 faire_un_virement_sur_le_compte_en_banque_de_PO(prixCourant)
 
 ```
