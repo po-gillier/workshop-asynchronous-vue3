@@ -8,11 +8,11 @@ c'est quoi?
 
 On dit d'un évènement qu'il est asynchrone si l'on ne peut pas prévoir son temps d'execution exactement.
 
-## Exemples de la vie
+## Exemples de la vie courante
 
 - Un trajet en voiture (dépend de la voiture, des bouchons, de la météo, etc...)
 - La cuisson d'un plat (dépend des ingrédients, de la taille des morceaux, de la  marque du four, de l'ancienneté du four, etc...)
-- Un appel aux impots (dépend de l'affluence lors de l'appel, dépend du nombre d'employés affectés à répondre, dépend du bon fonctionnement du réeau téléphonique, ...)
+- Un appel aux impots (dépend de l'affluence lors de l'appel, dépend du nombre d'employés affectés à répondre, dépend du bon fonctionnement du réseau téléphonique, ...)
 - Une conversation (je te pose une question et je ne sais pas combien de temps tu vas mettre à réfléchir puis répondre)
 
 ## Et le dev?
@@ -40,7 +40,7 @@ Maintenant il faut comprendre que chaque requête passe par énormément d'inter
   - Server back recommerce.
   - temps de traitement du server
 
-Et ca ce n'est que l'allée de la requete mais le back doit encore nous répondre. Soit en erreur soit avec les données demandées. Il va donc envoyer une Réponse qui devra faire entièrement le chemin  inverse et parfois même un peu plus.
+Et ca ce n'est que l'allée de la requete mais le back doit encore nous répondre. Soit en erreur soit avec les données demandées. Il va donc envoyer une Réponse qui devra faire entièrement le chemin inverse et parfois même un peu plus.
 Chacun des intermédiaires possède son lot d'inprédictabilité comme nous l'avons vu avant. 
 
 Il est donc impossible de prévoir combien de temps va mettre une requete à un server, il y a trop de paramètres inconnus ou sur lesquels nous ne pouvons pas avoir de controle.
@@ -56,7 +56,7 @@ Lorsqu'un utilisateur va arriver sur la fiche d'un produit par exemple, nous all
 
 C'est une interface que le server va offrir pour exposer ses données.
 
-### Comment intérroger une API? 
+### Comment interroger une API? 
 
 Les API web que nous utilisons sont disponibles via des URLs comme par exemple : 
 - https://adresse-de-mon-api.com/produit/:id
@@ -74,13 +74,13 @@ Si l'on tente de contacter une API sur une URL n'existant pas ou avec les mauvai
 
 ## Cas concret d'asynchronisme
 
-Imaginons que l'utilisateur veut consulter une ficher produit. Notre site vient de contacter le server sur son API en lui demandant la fiche du produit ayant l'id 23.
+Imaginons que l'utilisateur veut consulter une fiche produit. Notre site vient de contacter le server sur son API en lui demandant la fiche du produit ayant l'id 23.
 
 ### Que doit-il se passer?
-Que se passe-t-il sur notre site pendant que la requete voyage jusqu'au backend et est traité par le server?
+Que se passe-t-il sur notre site pendant que la requete voyage jusqu'au backend et est traitée par le server?
 - Notre site doit il rester sur une page blanche? 
 - Notre site doit il rester sur la même page? 
-- Si l'utilisateur clique sur un bouton, doit on faire apparaitre la modale correspondante ou bien attend on que la requete se résolve avant de la faire apparaitre?
+- Si l'utilisateur clique sur un bouton, doit on faire apparaitre la modale correspondante ou bien attend-on que la requete se résolve avant de la faire apparaitre?
 
 On veut evidemment que le site continue de fonctionner.
 On doit Donc pouvoir faire tourner du code pendant que la requete est en train d'être résolue par le réseau/back. \
@@ -177,7 +177,7 @@ On voit bien ici qu'on ne peut pas prévoir dans quel ordre les actions vont s'e
 
 ## Asynchronisme²
 
-Ajoutons maintenant un peu de complexité, imaginons que l'utilisateur veut consulter un tableau de produit. \
+Ajoutons maintenant un peu de complexité, imaginons que l'utilisateur veuille consulter un tableau de produit. \
 Chaque produit se trouve sous la forme : 
 ```
 {
@@ -443,7 +443,7 @@ Il est impossible de le savoir puisqui'l existe plusieurs possibilités :
 
 Nos deux callbacks vont mettre à jour une variable partagée et vu qu'il n'est pas possible de prévoir l'ordre de résolution des Promesses on ne peut pas savoir quelle sera la valeur de cette variable. Nous pourrions arriver à l'appel de `faire_un_virement_sur_le_compte_en_banque_de_PO` tandis que P1 se résout et donc la valeur dans la variable ne sera pas celle attendue.
 
-Un autre cas serait par exemple la construction d'un object ayant des propriétés dépendantes de plusieurs apis. Nous aurions donc plusieurs promesses se résolvant dans un ordre inconnus et notre objet pourrait contenir des valeurs érronées.
+Un autre cas serait par exemple la construction d'un object ayant des propriétés dépendantes de plusieurs apis. Nous aurions donc plusieurs promesses se résolvant dans un ordre inconnu et notre objet pourrait contenir des valeurs érronées.
 
 Pour éviter ce problème, il faut s'assurer soit de ne pas utiliser de variable partagée soit que l'ordre de résolution est prévisible.
 
